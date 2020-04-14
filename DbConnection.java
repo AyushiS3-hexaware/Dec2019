@@ -1,6 +1,7 @@
-package com.hexaware.persistence;
+package com.hexaware.MLP212.persistence;
 
 import org.skife.jdbi.v2.DBI;
+import org.skife.jdbi.v2.logging.PrintStreamLog;;
 
 /**
  */
@@ -16,11 +17,11 @@ public class DbConnection {
       if (dbc == null || dbc.equals("")) {
         dbc = "localhost:3306";
       }
-      DBI dbi = new DBI("jdbc:mysql://" + dbc + "/sqlpractice?useSSL=false", "root", "Password123");
+      DBI dbi = new DBI("jdbc:mysql://" + dbc + "/MLP212", "root", "Password123");
+      dbi.setSQLLog(new PrintStreamLog());
       return dbi;
     } catch (ClassNotFoundException e) {
       throw new RuntimeException(e);
     }
   }
 }
-
